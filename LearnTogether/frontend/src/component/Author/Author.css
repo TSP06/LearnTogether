@@ -1,0 +1,200 @@
+/* General improvements and modern resets */
+:root {
+    /* Updated color palette with gradient tones */
+    --primary-color-start: #6a82fb; /* Lighter blue/purple */
+    --primary-color-end: #fc5c7d;   /* Pink/Red */
+    --secondary-color-start: #8360c3; /* Purple */
+    --secondary-color-end: #2ebf91;   /* Teal */
+  
+    --background-color-start: #e0eafc; /* Light blue */
+    --background-color-end: #cfdef3;   /* Lighter blue */
+  
+    --card-background-color: #ffffff;
+    --shadow: rgba(0, 0, 0, 0.15); /* Slightly stronger shadow for contrast with gradient */
+    --text-color-primary: #212121;
+    --text-color-secondary: #757575;
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    /* Gradient background for the entire page */
+    background: linear-gradient(to right, var(--background-color-start), var(--background-color-end));
+    color: var(--text-color-primary);
+    min-height: 100vh; /* Ensure gradient covers full height */
+  }
+  
+  /* Horizontal scroll container */
+  .author-container {
+      display: flex;
+      overflow-x: scroll;
+      padding: 2vh 1vh;
+      gap: 16px;
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+      scroll-snap-type: x mandatory;
+  }
+  .author-container::-webkit-scrollbar {
+      display: none; /* Hide scrollbar for Chrome, Safari */
+  }
+  
+  /* Individual author card */
+  .author-card {
+      min-width: 170px;
+      height: 200px;
+      background-color: var(--card-background-color);
+      box-shadow: 0 4px 12px var(--shadow);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease; /* Include background in transition */
+      cursor: pointer;
+      scroll-snap-align: start;
+      position: relative; /* Needed for pseudo-element gradient */
+      overflow: hidden; /* Ensures gradient stays within bounds */
+      z-index: 1; /* Ensure content is above gradient */
+  }
+  
+  /* Gradient on hover for author card */
+  .author-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to right, var(--primary-color-start), var(--primary-color-end));
+      opacity: 0; /* Hidden by default */
+      border-radius: 12px;
+      transition: opacity 0.3s ease;
+      z-index: -1; /* Place behind content */
+  }
+  
+  .author-card:hover::before {
+      opacity: 1; /* Show gradient on hover */
+  }
+  
+  .author-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px var(--shadow);
+      color: white; /* Change text color for better contrast on dark gradient */
+  }
+  
+  .author-card:hover .author-name,
+  .author-card:hover .author-notes-followers-text {
+      color: white; /* Ensure text is readable on gradient background */
+  }
+  
+  .author-card:hover .author-notes-followers-count {
+      color: white; /* Make count readable on gradient */
+  }
+  
+  
+  /* Profile image */
+  .author-image {
+      height: 70px;
+      width: 70px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid var(--primary-color-start); /* Use one of the gradient colors */
+      transition: transform 0.3s ease, border-color 0.3s ease; /* Add border-color to transition */
+  }
+  .author-card:hover .author-image {
+      transform: scale(1.05);
+      border-color: var(--card-background-color); /* Change border color on hover */
+  }
+  
+  /* Text elements */
+  .author-name {
+      font-size: 18px;
+      font-weight: 700;
+      margin-top: 10px;
+      color: var(--text-color-primary);
+      transition: color 0.3s ease; /* Smooth color change on hover */
+  }
+  
+  .featured-author {
+      font-size: 30px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 20px;
+      color: var(--text-color-primary);
+  }
+  
+  .author-notes-followers-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+      width: 100%;
+  }
+  .author-notes-followers {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 15px;
+  }
+  .author-notes-followers-count {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--primary-color-start); /* Use one of the gradient colors */
+      transition: color 0.3s ease; /* Smooth color change on hover */
+  }
+  .author-notes-followers-text {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-color-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: color 0.3s ease; /* Smooth color change on hover */
+  }
+  
+  /* Small visual separator (optional) */
+  .seperation-image {
+     /* Ensure it stands out against gradient if needed or hide it */
+      width: 1px;
+      background-color: var(--text-color-secondary);
+      opacity: 0.2;
+      height: 30px;
+      align-self: center;
+      margin: 0 10px;
+      transition: background-color 0.3s ease, opacity 0.3s ease;
+  }
+  .author-card:hover .seperation-image {
+      background-color: white; /* Make separator visible on gradient */
+      opacity: 0.5;
+  }
+  
+  
+  /* Responsive Design for Mobile */
+  @media only screen and (max-width: 600px) {
+      .featured-author {
+          font-size: 24px;
+      }
+      .author-container {
+          padding: 10px;
+          gap: 12px;
+      }
+      .author-card {
+          min-width: 140px;
+          height: 180px;
+          padding: 15px;
+      }
+      .author-image {
+          height: 55px;
+          width: 55px;
+          border-width: 2px;
+      }
+      .author-name {
+          font-size: 16px;
+      }
+      .author-notes-followers {
+          padding: 0 10px;
+      }
+      .author-notes-followers-count {
+          font-size: 18px;
+      }
+      .author-notes-followers-text {
+          font-size: 10px;
+      }
+  }

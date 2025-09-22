@@ -1,0 +1,145 @@
+/* Universal reset and modern defaults */
+:root {
+    --primary-color: #3f51b5; /* Professional blue */
+    --secondary-color: #cddc39; /* Complementary green */
+    --text-color-dark: #212121;
+    --text-color-light: #f5f5f5;
+    --background-light: #e8eaf6;
+    --background-dark: #9fa8da;
+    --shadow-color: rgba(0, 0, 0, 0.15);
+  }
+  
+  * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif; /* A more modern font */
+  }
+  
+  /* Banner section */
+  .banner-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center; /* Center content vertically */
+      height: 30vh;
+      padding: 1rem 1rem;
+      overflow: hidden; /* Ensure content doesn't bleed out */
+  }
+  
+  .carousel-container {
+      background: linear-gradient(135deg, var(--background-light), var(--background-dark));
+      width: 95%; /* Use relative units */
+      max-width: 1200px;
+      margin: 0 auto; /* Center the container */
+      border-radius: 12px;
+      box-shadow: 0 8px 20px var(--shadow-color);
+      position: relative;
+      overflow: hidden;
+  }
+  
+  /* Author info container */
+  .banner-first {
+      display: flex;
+      flex: 3;
+      height: 100%;
+      justify-content: space-around;
+      align-items: center;
+      padding: 0 10vw;
+      text-align: center;
+  }
+  
+  /* Profile image */
+  .banner-image-container {
+      flex: 1; /* More balanced flex distribution */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  
+  .banner-image, .carousel .slide img {
+      width: 18vh;
+      height: 18vh;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--primary-color);
+      transition: transform 0.3s ease;
+  }
+  .banner-image-container:hover .banner-image {
+      transform: scale(1.08); /* Subtle zoom on hover */
+  }
+  
+  /* Text section */
+  .banner-text {
+      flex: 2;
+      padding-left: 2rem;
+      color: var(--text-color-dark);
+  }
+  
+  .banner-name {
+      font-weight: 700;
+      font-size: 2.2rem;
+      cursor: pointer;
+      color: var(--text-color-dark);
+      transition: color 0.3s ease;
+  }
+  
+  .banner-name:hover {
+      color: var(--primary-color);
+  }
+  
+  .banner-sell {
+      font-weight: 400;
+      font-size: 1.2rem;
+      color: var(--text-color-dark);
+      opacity: 0.8;
+  }
+  
+  /* Carousel specific styling */
+  .carousel .slide img {
+      border-color: var(--secondary-color);
+  }
+  .carousel.carousel-slider .control-arrow {
+      background-color: var(--primary-color);
+      height: 6vh;
+      width: 40px;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+  }
+  
+  .carousel.carousel-slider .control-arrow:hover {
+      opacity: 1;
+      background-color: var(--primary-color);
+  }
+  
+  /* Responsive adjustments */
+  @media only screen and (max-width: 768px) {
+      .banner-container {
+          height: auto;
+          padding: 1rem 0;
+      }
+      .banner-first {
+          flex-direction: column;
+          padding: 2rem 1rem;
+          justify-content: center;
+          text-align: center;
+      }
+      .banner-image-container {
+          margin-bottom: 1rem;
+      }
+      .banner-text {
+          padding-left: 0;
+      }
+      .banner-name {
+          font-size: 1.8rem;
+      }
+      .banner-sell {
+          font-size: 1rem;
+      }
+      .banner-image, .carousel .slide img {
+          width: 15vh;
+          height: 15vh;
+      }
+  }
